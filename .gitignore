@@ -1,0 +1,19 @@
+#
+# macOS
+*.DS_Store
+.DS_Store
+
+# Python
+venv/
+__pycache__/
+
+# development
+*.o
+*.so
+*.log
+
+index.json
+
+env.sh
+stenv.sh
+oaikey.txt
