@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 """
 This program generates an OpenAI chat-bot from an Obsidian vault and reads queries from the command line.
 Program is terminated by entering "quit", "exit", or "bye" at the query prompt.
@@ -6,15 +6,15 @@ Program is terminated by entering "quit", "exit", or "bye" at the query prompt.
 code derived from <https://bootcamp.uxdesign.cc/a-step-by-step-guide-to-building-a-chatbot-based-on-your-own-documents-with-gpt-2d550534eea5>
 A step-by-step guide to building a chatbot based on your own documents with GPT
 
-Required libraries: These commands are one way to install both LlamaIndex and OpenAI Python libraries.
+Required library: This command is one way to install LlamaIndex and OpenAI Python libraries.
 
 !pip install llama-index
-!pip install openai
 
 program assumptions:
-(1) an OPENAI_API_KEY is available in a file named 'oaikey.txt' in the current directory.
+(1) OPENAI_API_KEY has been set in the shell environment
 (2) documents are read from an Obsidian vault
 (3) GPT-index is generated every time the program is run (running cost factor)
+(4) generated index is saved as `index.json`, but it is not reused
 
 TODOs:
 - save and re-use GPT-index file from previous run (save some time and money)
@@ -36,12 +36,9 @@ logging.basicConfig(level=os.environ.get('LOGLEVEL', 'WARNING').upper())
 import argparse
 def init_argparse():
     parser = argparse.ArgumentParser(description='Generate OpenAI chat-bot from an Obsidian vault Markdown pages.')
-    parser.add_argument('--vault', '-v', required=True, help='directory containing Markdown files')
+    parser.add_argument('--vault', '-v', required=True, help='Obsidian vault directory')
     return parser
 
-# set openAI API key
-os.environ['OPENAI_API_KEY'] = Path('oaikey.txt').read_text().replace('\n','')
-    
 def main():
     argparser = init_argparse();
     args = argparser.parse_args();

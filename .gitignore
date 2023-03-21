@@ -1,7 +1,14 @@
-#
+# auth
+env.sh
+stenv.sh
+
 # macOS
 *.DS_Store
 .DS_Store
+
+# Emacs
+*~
+\#*\#
 
 # Python
 venv/
@@ -11,9 +18,5 @@ __pycache__/
 *.o
 *.so
 *.log
+*.json
 
-index.json
-
-env.sh
-stenv.sh
-oaikey.txt
