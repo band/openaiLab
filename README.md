@@ -9,7 +9,7 @@
 
 # oaiExpt01 - 
 
-oaiExpt01 is a command-line Python script that indexes the contents of an Obsidian vault and reads queries on that index from the command line.
+oaiExpt01 is a command-line Python script that uses OpenAI to index the contents of an Obsidian vault, and reads queries on that index from the command line.
 
 Comments and bug reports are welcome at <https://github.com/band/openaiLab/issues>, and I'm happy to review pull requests.
 
