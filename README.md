@@ -2,7 +2,7 @@
 
 - A repository to hold explorations and experiments with using OpenAI.
 
-- We try to keep the lab bench clean, but there is no guarantee that
+- We try to keep the lab bench clean, but there is always the chance that unfinished work is left lying around.  Also, there is no guarantee that
   what is here today will be here tomorrow.
 
 -----
