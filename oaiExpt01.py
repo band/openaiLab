@@ -23,7 +23,7 @@ TODOs:
 """
 
 # import needed packages
-from llama_index import GPTSimpleVectorIndex, Document, SimpleDirectoryReader
+from llama_index import GPTSimpleVectorIndex, Document
 from llama_index import download_loader
 import os
 from pathlib import Path
@@ -53,7 +53,7 @@ def main():
     documents = ObsidianReader(vault_dir).load_data() # Returns list of documents
 
     # Construct a simple vector index
-    index = GPTSimpleVectorIndex(documents)
+    index = GPTSimpleVectorIndex.from_documents(documents)
 
     # Save your index to a index.json file
     index.save_to_disk('index.json')
