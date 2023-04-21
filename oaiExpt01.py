@@ -23,8 +23,7 @@ TODOs:
 """
 
 # import needed packages
-from llama_index import GPTSimpleVectorIndex, Document
-from llama_index import download_loader
+from llama_index import GPTSimpleVectorIndex, download_loader
 import os
 from pathlib import Path
 
