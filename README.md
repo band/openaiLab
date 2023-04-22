@@ -7,9 +7,9 @@
 
 -----
 
-# oaiExpt01 - 
+# obsidianChat.py - 
 
-oaiExpt01 is a command-line Python script that uses OpenAI to index the contents of an Obsidian vault, and reads queries on that index from the command line.
+obsidianChat.py is a command-line Python script that uses OpenAI to index the contents of an Obsidian vault, and reads queries on that index from the command line.
 
 Comments and bug reports are welcome at <https://github.com/band/openaiLab/issues>, and I'm happy to review pull requests.
 
@@ -43,17 +43,22 @@ You can copy `env.sh-template` to `env.sh`, add your API key to it, and then use
 Run the program
 
 ```bash
-python3 oaiExpt01.py -v /path/to/obsidian/vault
+python3 obsidianChat.py -v /path/to/obsidian/vault
 ```
 
-Or you can change directory to where `oaiExpt01.py` is located and run it as an executable:
+Or you can change directory to where `obsidianChat.py` is located and run it as an executable:
 
 ```bash
-./oaiExpt01.py -v /path/to/obsidian/vault
+./obsidianChat.py -v /path/to/obsidian/vault
 ```
 
 It can take some time to generate an index; be patient. Enter a query at the `$` prompt.  
 To terminate the program enter "quit", "exit", or "bye" at the `$` prompt.    
+
+-----
+# oaiTextFiles.py
+
+This program does not work. It may never work.
 
 ## License
 
