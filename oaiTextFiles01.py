@@ -23,7 +23,11 @@ TODOs:
 """
 
 # import needed packages
-from llama_index import GPTSimpleVectorIndex, SimpleDirectoryReader, download_loader
+from llama_index import (
+    GPTSimpleVectorIndex,
+    SimpleDirectoryReader,
+    download_loader
+)
 import os
 from pathlib import Path
 
