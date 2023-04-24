@@ -58,7 +58,7 @@ To terminate the program enter "quit", "exit", or "bye" at the `$` prompt.
 -----
 # oaiTextFiles.py
 
-This program does not work. It may never work.
+This program is much the same (including Usage) as the `obsidianChat.py` program. It reads all files in the specified directory that do not have the following extensions: ".docx",".jpg",".pdf",".png",".pptx".
 
 ## License
 
