@@ -27,21 +27,29 @@ def main():
     logging.info("directory %s: ", dir_path)
 
     # grab some test files
-    docs = []
+    documents = []
     allfiles = [Path(f).as_posix() for f in glob.iglob(f"{dir_path}/**/*.*", recursive=True, include_hidden=False)]
 
-#    for file_path in glob.glob(os.path.join(dir_path, '*')):
-#        if os.path.isfile(file_path):
-#            print(file_path)
-#            docs.extend(loader.load_data(file=file_path, split_documents=False))
-
-    
     for file_path in allfiles:
         print(file_path)
-        docs.extend(loader.load_data(file=file_path, split_documents=False))
+        documents.extend(loader.load_data(file=file_path, split_documents=False))
 
-    print("how many docs? ", len(docs))
-#    print("\n".join([str(_doc) for _doc in docs[:100]]))
- 
+    print("how many docs? ", len(documents))
+
+    index = GPTSimpleVectorIndex.from_documents(documents)
+
+    # Query the index
+    while True:
+        # run a query read from the input
+        query = input("enter a query: ")
+        match query.split():
+            case ["quit" | "exit" | "bye"]:
+                logging.debug("we quit!")
+                quit()
+            case _:
+                print(f"run this query: {query!r}.")
+                response = index.query(f"{query!r}")
+                print(response)
+
 if __name__ == "__main__":
     exit(main())
