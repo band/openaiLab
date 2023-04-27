@@ -32,7 +32,26 @@ logging.basicConfig(level=os.environ.get('LOGLEVEL', 'WARNING').upper())
 import glob
 from pathlib import Path
 
-from llama_index import GPTSimpleVectorIndex, download_loader
+from llama_index import (
+    GPTSimpleVectorIndex,
+    LLMPredictor,
+    PromptHelper,
+    ServiceContext,
+    )
+from langchain import OpenAI
+
+# define prompt helper properties
+max_input_size = 4096
+num_output = 256
+max_chunk_overlap = 20
+prompt_helper = PromptHelper(max_input_size, num_output, max_chunk_overlap)
+
+# define LLM
+llm_predictor = LLMPredictor(llm=OpenAI(temperature=0, model_name="text-ada-001"))
+
+service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor, prompt_helper=prompt_helper)
+
+from llama_index import download_loader
 UnstructuredReader = download_loader('UnstructuredReader')
 loader = UnstructuredReader()
 
@@ -52,20 +71,20 @@ def main():
     logging.info("document file directory: %s", dir_path)
 
     # Loading from a directory
-    logging.debug("Loading from directory ", dir_path)
+    logging.debug("Loading from directory %s", dir_path)
     documents = []
     allfiles = [Path(f).as_posix() \
                 for f in glob.iglob(f"{dir_path}/**/*.*", recursive=True, include_hidden=False) \
                 if Path(f).suffix not in [".docx",".jpg",".pdf",".png",".pptx"]]
 
     for file_path in allfiles:
-        logging.debug(file_path)
+        logging.debug("file_path: %s", file_path)
         documents.extend(loader.load_data(file=file_path, split_documents=False))
 
-    logging.debug("how many documents? ", len(documents))
+    logging.debug("how many documents? %s", len(documents))
 
     # Construct a simple vector index
-    index = GPTSimpleVectorIndex.from_documents(documents)
+    index = GPTSimpleVectorIndex.from_documents(documents, service_context=service_context)
 
     # Save your index to a index.json file
     index.save_to_disk('index.json')
