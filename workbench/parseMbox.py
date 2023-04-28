@@ -1,5 +1,5 @@
 import mailbox
-from pprint import pprint
+import re
 
 # Replace with the path to your mbox file
 mbox_file = '/Users/band/Documents/Github//openaiLab/workbench//oaiExpt001.mbox'
@@ -9,6 +9,7 @@ mbox = mailbox.mbox(mbox_file)
 
 # Iterate over messages in the mbox file
 def parseMbox(mbox_file):
+    pattern = r'On.*wrote:'
     for message in mbox:
         # Get the message from and subject
         print(f"From: {message['from']}")
@@ -19,12 +20,22 @@ def parseMbox(mbox_file):
         if message.is_multipart():
             for part in message.walk():
                 if part.get_content_type() == 'text/plain':
-                    body = part.get_payload(decode=True)
-                    print(f"text/plain body: {body}")
+                    body = part.get_payload(decode=True).decode("utf-8")
+                    match = re.search(pattern, body, flags=re.DOTALL)
+                    if match:
+                        msg = body[:match.start()]
+                    else:
+                        msg = body
+                    print(f"text/plain body: {msg}")
         else:
-            body = message.get_payload(decode=True)
-            pprint(body)
-        print("\n")
+            body = message.get_payload(decode=True).decode("utf-8")
+            match = re.search(pattern, body, flags=re.DOTALL)            
+            if match:
+                msg = body[:match.start()]
+            else:
+                msg = body
+            print(f"body: {msg}")
+        print("----------  \n")
 
 def main():
     parseMbox(mbox)
