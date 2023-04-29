@@ -9,9 +9,8 @@ mbox = mailbox.mbox(mbox_file)
 
 # Iterate over messages in the mbox file
 def parseMbox(mbox_file):
-    re_pattern = r'On.*wrote:'
     for message in mbox:
-        # Get the message from and subject
+        # Get message from and subject
         print(f"From: {message['from']}")
         subject = message['subject']
         print(f"Subject: {subject}")
@@ -21,14 +20,14 @@ def parseMbox(mbox_file):
             for part in message.walk():
                 if part.get_content_type() == 'text/plain':
                     body = part.get_payload(decode=True).decode("utf-8")
-                    if match := re.search(re_pattern, body, flags=re.DOTALL):
+                    if match := re.search(r'On.*wrote:', body, flags=re.DOTALL):
                         msg = body[:match.start()].split("-- \r\nYou ",1)[0]
                     else:
                         msg = body.split("-- \r\nYou ",1)[0]
                     print(f"text/plain body: {msg}")
         else:
             body = message.get_payload(decode=True).decode("utf-8")
-            if match := re.search(re_pattern, body, flags=re.DOTALL):
+            if match := re.search(r'On.*wrote:', body, flags=re.DOTALL):
                 msg = body[:match.start()].split("-- \r\nYou ",1)[0]
             else:
                 msg = body.split("-- \r\nYou ",1)[0]
