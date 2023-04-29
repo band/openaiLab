@@ -21,21 +21,19 @@ def parseMbox(mbox_file):
             for part in message.walk():
                 if part.get_content_type() == 'text/plain':
                     body = part.get_payload(decode=True).decode("utf-8")
-                    match = re.search(pattern, body, flags=re.DOTALL)
-                    if match:
-                        msg = body[:match.start()]
+                    if match := re.search(pattern, body, flags=re.DOTALL):
+                        msg = body[:match.start()].split("-- \r\nYou ",1)[0]
                     else:
-                        msg = body
+                        msg = body.split("-- \r\nYou ",1)[0]
                     print(f"text/plain body: {msg}")
         else:
             body = message.get_payload(decode=True).decode("utf-8")
-            match = re.search(pattern, body, flags=re.DOTALL)            
-            if match:
-                msg = body[:match.start()]
+            if match := re.search(pattern, body, flags=re.DOTALL):
+                msg = body[:match.start()].split("-- \r\nYou ",1)[0]
             else:
-                msg = body
+                msg = body.split("-- \r\nYou ",1)[0]
             print(f"body: {msg}")
-        print("----------  \n")
+        print("----------\n")
 
 def main():
     parseMbox(mbox)
