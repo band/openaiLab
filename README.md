@@ -7,13 +7,13 @@
 
 -----
 
-## llama-index-bench
+## llama-index-lab
 
 - The lab bench for experiments using the llama-index framework software
 
 - cf. the README.md file in that directory for more information
 
-## langchain-bench
+## langchain-lab
 
 - The lab bench for experiments using the langchain framework software
 
