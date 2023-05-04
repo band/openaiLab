@@ -38,7 +38,7 @@ from pathlib import Path
 
 from langchain.document_loaders import DirectoryLoader
 # loader = DirectoryLoader(dir_path, glob="**/*.md")
-from langchain.indexes import VectorStoreIndexCreator
+from langchain.indexes import VectorstoreIndexCreator
 # index = VectorstoreIndexCreator().from_loaders([loader])
 from langchain import OpenAI
 
