@@ -9,18 +9,15 @@
 
 ## llama-index-lab
 
-- The lab bench for experiments using the llama-index framework
-  software  
-    <https://gpt-index.readthedocs.io/en/latest/index.html>  
+- The lab bench for experiments using the llama-index framework software
 
-- cf. the README.md file in that directory for more information  
+- cf. the README.md file in that directory for more information
 
 ## langchain-lab
 
-- The lab bench for experiments using the langchain framework software  
-    <https://python.langchain.com/en/latest/getting_started/getting_started.html>  
+- The lab bench for experiments using the langchain framework software
 
-- cf. the README.md file in that directory for more information  
+- cf. the README.md file in that directory for more information
 
 ## License
 
