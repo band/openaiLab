@@ -23,12 +23,10 @@ TODOs:
 """
 
 # import needed packages
-from llama_index import GPTSimpleVectorIndex, download_loader
-import os
 from pathlib import Path
 
 # set up logging
-import logging
+import logging, os
 logging.basicConfig(level=os.environ.get('LOGLEVEL', 'WARNING').upper())
 
 # set up argparse
@@ -37,6 +35,25 @@ def init_argparse():
     parser = argparse.ArgumentParser(description='Generate OpenAI chat-bot from an Obsidian vault Markdown pages.')
     parser.add_argument('--vault', '-v', required=True, help='Obsidian vault directory')
     return parser
+
+# set up LLM 
+from llama_index import LLMPredictor, GPTVectorStoreIndex, PromptHelper, ServiceContext, StorageContext
+from llama_index import download_loader
+from langchain import OpenAI
+
+# define LLM
+# use 'text-ada-001' for development purposes (cost mgt)
+llm_predictor = LLMPredictor(llm=OpenAI(temperature=0, model_name="text-ada-001"))
+
+# define prompt helper
+max_input_size = 4096
+num_output = 256
+max_chunk_overlap = 20
+prompt_helper = PromptHelper(max_input_size, num_output, max_chunk_overlap)
+
+service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor, prompt_helper=prompt_helper)
+
+storage_context = StorageContext.from_defaults()
 
 def main():
     argparser = init_argparse();
@@ -52,24 +69,25 @@ def main():
     documents = ObsidianReader(vault_dir).load_data() # Returns list of documents
 
     # Construct a simple vector index
-    index = GPTSimpleVectorIndex.from_documents(documents)
+    index = GPTVectorStoreIndex.from_documents(
+        documents, service_context=service_context
+    )
 
-    # Save your index to a index.json file
-    index.save_to_disk('index.json')
-    # Load the index from your saved index.json file
-#    index = GPTSimpleVectorIndex.load_from_disk('index.json')
+    # Save your index to a ./storage directory
+    index.storage_context.persist()
+    # Load the saved index TODO: this needs more context and code
     
     # Query the index
     while True:
         # run a query read from the input
-        query = input("$ ")
+        query = input("enter a query: ")
         match query.split():
-            case ["quit" | "exit" | "bye"]:
+            case ["quit" | "-q" | "exit" | "bye"]:
                 logging.debug("we quit!")
                 quit()
             case _:
                 print(f"run this query: {query!r}.")
-                response = index.query(f"{query!r}")
+                response = index.as_query_engine().query(f"{query!r}")
                 print(response)
  
 if __name__ == "__main__":
