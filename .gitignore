@@ -14,6 +14,9 @@ stenv.sh
 venv/
 __pycache__/
 
+# LLMs
+.storage/
+
 # development
 *.o
 *.so
