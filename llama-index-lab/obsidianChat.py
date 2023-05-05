@@ -33,40 +33,47 @@ logging.basicConfig(level=os.environ.get('LOGLEVEL', 'WARNING').upper())
 import argparse
 def init_argparse():
     parser = argparse.ArgumentParser(description='Generate OpenAI chat-bot from an Obsidian vault Markdown pages.')
+    parser.add_argument('--model', '-m', required=False, help='llm model_name')
     parser.add_argument('--vault', '-v', required=True, help='Obsidian vault directory')
     return parser
 
-# set up LLM 
+# import LLM modules
 from llama_index import LLMPredictor, GPTVectorStoreIndex, PromptHelper, ServiceContext, StorageContext
 from llama_index import download_loader
 from langchain import OpenAI
 
-# define LLM
-# use 'text-ada-001' for development purposes (cost mgt)
-llm_predictor = LLMPredictor(llm=OpenAI(temperature=0, model_name="text-ada-001"))
-
-# define prompt helper
-max_input_size = 4096
-num_output = 256
-max_chunk_overlap = 20
-prompt_helper = PromptHelper(max_input_size, num_output, max_chunk_overlap)
-
-service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor, prompt_helper=prompt_helper)
-
-storage_context = StorageContext.from_defaults()
 
 def main():
     argparser = init_argparse();
     args = argparser.parse_args();
     logging.debug(f"args: {args}")
-    
+
     vault_dir = str(args.vault)
     logging.info("vault directory: %s", vault_dir)
 
-    # Loading from an Obsidian vault
+    # define LLM
+    # use 'text-ada-001' if no model_name provided
+    llm_model_name = "text-ada-001"
+    if args.model:
+        llm_model_name = str(args.model)
+
+    logging.info("llm model name: %s", llm_model_name)
+    llm_predictor = LLMPredictor(llm=OpenAI(temperature=0, model_name=llm_model_name))
+    
+    # define prompt helper
+    max_input_size = 4096
+    num_output = 256
+    max_chunk_overlap = 20
+    prompt_helper = PromptHelper(max_input_size, num_output, max_chunk_overlap)
+
+    service_context = ServiceContext.from_defaults(llm_predictor=llm_predictor, prompt_helper=prompt_helper)
+
+    storage_context = StorageContext.from_defaults()
+    
+    # Loading documents from an Obsidian vault
     print("Loading from Obsidian vault ", vault_dir)
     ObsidianReader = download_loader('ObsidianReader')
-    documents = ObsidianReader(vault_dir).load_data() # Returns list of documents
+    documents = ObsidianReader(vault_dir).load_data() # Returns list of Documents
 
     # Construct a simple vector index
     index = GPTVectorStoreIndex.from_documents(
