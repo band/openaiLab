@@ -33,7 +33,7 @@ import glob
 from pathlib import Path
 
 from llama_index import (
-    GPTSimpleVectorIndex,
+    GPTVectorStoreIndex,
     LLMPredictor,
     PromptHelper,
     ServiceContext,
@@ -84,7 +84,7 @@ def main():
     logging.debug("how many documents? %s", len(documents))
 
     # Construct a simple vector index
-    index = GPTSimpleVectorIndex.from_documents(documents, service_context=service_context)
+    index = GPTVectorStoreIndex.from_documents(documents, service_context=service_context)
 
     # Save your index to a index.json file
     index.save_to_disk('index.json')
