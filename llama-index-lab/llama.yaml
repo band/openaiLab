@@ -1,0 +1,8 @@
+# LLamaIndex usage properties
+# specify llm model; default models can be expensive
+llm_model_name: text-ada-001
+
+# directory in which indices are saved
+#   default value is './storage', replace with non-default value
+index_storage_dir: './storage'
+
