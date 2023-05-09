@@ -2,13 +2,15 @@
 
 # 2023-05-09
 #  ref.: <https://medium.com/the-techlife/using-huggingface-openai-and-cohere-models-with-langchain-db57af14ac5b>
-#  copied from REPL
+#  the problem with this post is that the code has not been proofread or tested;
+#    contains several errors and unneeded imports
+# the code here was copied from my own REPL and cleaned up (WLA)
 
 from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 from langchain.embeddings import HuggingFaceEmbeddings
-from langchain.chains.qa_with_sources import load_qa_with_sources_chain
 from langchain.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.chains.qa_with_sources import load_qa_with_sources_chain
 from langchain.vectorstores import FAISS
 
 import glob
