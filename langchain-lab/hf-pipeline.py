@@ -17,7 +17,7 @@ import glob
 model = HuggingFacePipeline.from_model_id(model_id="facebook/mbart-large-50", task="text-generation", model_kwargs={"temperature":0, "max_length":300})
 
 template = """ You are my assistant.
-Provide best answers to my question with reasoning for why they are correct.
+Provide answers to my question with reasoning why they are correct.
 Question: {input} Answer: """
 
 prompt = PromptTemplate(template=template, input_variables=["input"])
@@ -25,6 +25,7 @@ prompt = PromptTemplate(template=template, input_variables=["input"])
 chain = LLMChain(prompt=prompt,llm=model)
 
 hf_embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
+
 my_loader = DirectoryLoader('/Users/band/tmp/workbench/testdir', glob='**/*.txt')
 docs = my_loader.load()
 text_split = RecursiveCharacterTextSplitter(chunk_size = 700, chunk_overlap = 0)
