@@ -16,8 +16,8 @@ import glob
 
 model = HuggingFacePipeline.from_model_id(model_id="facebook/mbart-large-50", task="text-generation", model_kwargs={"temperature":0, "max_length":300})
 
-template = """ You are my assistant.
-Provide answers to my question with reasoning why they are correct.
+template = """ You are an assistant.
+Provide answers to my question with sources as support.
 Question: {input} Answer: """
 
 prompt = PromptTemplate(template=template, input_variables=["input"])
