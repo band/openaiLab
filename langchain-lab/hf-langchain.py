@@ -21,6 +21,7 @@ Question: {input} Answer: """
 
 prompt = PromptTemplate(template=template, input_variables=["input"])
 model = HuggingFaceHub(
+#    repo_id="decapoda-research/llama-7b-hf",
     repo_id="facebook/mbart-large-50",
     model_kwargs={"temperature": 0, "max_length":200}
 )
