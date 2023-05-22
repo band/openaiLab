@@ -26,8 +26,10 @@ TODOs:
 from pathlib import Path
 
 # set up logging
-import logging, os
-logging.basicConfig(level=os.environ.get('LOGLEVEL', 'WARNING').upper())
+import logging, sys
+# logging.basicConfig(level=os.environ.get('LOGLEVEL', 'WARNING').upper())
+logging.basicConfig(stream=sys.stdout, level=logging.INFO)
+logging.getLogger().addHandler(logging.StreamHandler(stream=sys.stdout))
 
 # set up argparse
 import argparse
@@ -39,7 +41,7 @@ def init_argparse():
 
 # import LLM modules
 from llama_index import LLMPredictor, GPTVectorStoreIndex, PromptHelper, ServiceContext, StorageContext
-from llama_index import download_loader
+from llama_index import ObsidianReader
 from langchain import OpenAI
 
 
@@ -72,7 +74,6 @@ def main():
     
     # Loading documents from an Obsidian vault
     print("Loading from Obsidian vault ", vault_dir)
-    ObsidianReader = download_loader('ObsidianReader')
     documents = ObsidianReader(vault_dir).load_data() # Returns list of Documents
 
     # Construct a simple vector index
