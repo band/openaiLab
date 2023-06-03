@@ -1,6 +1,7 @@
 # auth
 env.sh
 stenv.sh
+.env
 
 # macOS
 *.DS_Store
