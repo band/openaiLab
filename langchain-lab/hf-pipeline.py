@@ -34,7 +34,7 @@ text = text_split.split_documents(docs)
 vectorstore = FAISS.from_documents(text, hf_embeddings)
 
 my_chain = load_qa_with_sources_chain(model, chain_type="refine")
-query = "What are the main topics?"
+query = "What information topics are in this collection?"
 documents = vectorstore.similarity_search(query)
 result = my_chain({"input_documents": documents, "question": query})
 
