@@ -1,4 +1,5 @@
 # auth
+
 env.sh
 stenv.sh
 .env
@@ -12,15 +13,24 @@ stenv.sh
 \#*\#
 
 # Python
+.env
 venv/
 __pycache__/
 
 # LLMs
 .storage/
+# Models
+models/
+# Local Chroma db
+.chroma/
+db/
 
 # development
 *.o
 *.so
 *.log
 *.json
+
+# Jupyter Notebook
+.ipynb_checkpoints
 
