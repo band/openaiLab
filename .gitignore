@@ -1,5 +1,4 @@
 # auth
-
 env.sh
 stenv.sh
 .env
@@ -20,6 +19,7 @@ __pycache__/
 # LLMs
 .storage/
 # Models
+model/
 models/
 # Local Chroma db
 .chroma/
