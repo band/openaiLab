@@ -47,7 +47,8 @@ def AI_SummaryPL(checkpoint, text, chunks, overlap):
                         model = base_model,
                         tokenizer = tokenizer,
                         max_length = 350, 
-                        min_length = 25
+                        min_length = 25,
+                        truncation=True
                         )
     ## START TIMER
     start = datetime.datetime.now() #not used now but useful
