@@ -1,0 +1,16 @@
+pip install mkl mkl-include # required for CPU usage on Mac users 
+pip install torch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 # The core
+#install Hugging Face Transformer libraries needed to interact with LLM
+pip install git+https://github.com/huggingface/transformers 
+#These will be used to interact with our documents
+pip install langchain==0.0.173 
+pip install faiss-cpu==1.7.4
+pip install unstructured==0.6.8
+pip install pytesseract==0.3.10
+pip install pypdf==3.9.0
+pip install pdf2image==1.16.3
+pip install sentence_transformers==2.2.2
+#required to run on CPU only, a little fasater
+pip install accelerate==0.19.0
+# For the GUI and webapp
+pip install streamlit
