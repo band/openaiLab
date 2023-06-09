@@ -1,11 +1,14 @@
 #! /usr/bin/env python
 
 #### IMPORTS FOR AI PIPELINES ###############
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+#from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+#from transformers import AutoModel, T5Tokenizer, T5Model
+#from langchain.llms import HuggingFacePipeline
+### IMPORTS NEEDED FOR THIS PROGRAM
 from transformers import pipeline
-from transformers import AutoModel, T5Tokenizer, T5Model
+from transformers import T5Tokenizer
 from transformers import T5ForConditionalGeneration
-from langchain.llms import HuggingFacePipeline
+
 import torch
 import datetime
 
@@ -19,9 +22,9 @@ def open_file(filepath):
 def AI_SummaryPL(checkpoint, text, chunks, overlap):
     """
     checkpoint is in the format of relative path
-    example:  checkpoint = "./model/"  #it is actually LaMini-Flan-T5-248M   #tested fine
-    text: a long string; or an input long string; or a loaded document into string
-    chunks: integer, length of the chunks being split
+    example:  checkpoint = "./model/"  #it is actually LaMini-Flan-T5-248M 
+    text: a long string; or an input long string; or a document read into a string
+    chunks: integer, length of the split chunks
     overlap: integer, overlap for attention and focus retreival
     RETURNS full_summary (str), delta(str) and reduction(str)
 
@@ -31,7 +34,7 @@ def AI_SummaryPL(checkpoint, text, chunks, overlap):
     """
     from langchain.text_splitter import RecursiveCharacterTextSplitter
     text_splitter = RecursiveCharacterTextSplitter(
-        # Set a really small chunk size, just to show.
+        # Set a really small chunk size, just to show.? for example ???
         chunk_size = chunks,
         chunk_overlap  = overlap,
         length_function = len,
@@ -51,21 +54,21 @@ def AI_SummaryPL(checkpoint, text, chunks, overlap):
                         truncation=True
                         )
     ## START TIMER
-    start = datetime.datetime.now() #not used now but useful
+    start = datetime.datetime.now()
     ## START CHUNKING
     full_summary = ''
     for chunk in range(len(texts)):
       result = pipe_sum(texts[chunk])
       full_summary = full_summary + ' '+ result[0]['summary_text']
-    stop = datetime.datetime.now() #not used now but useful  
+    stop = datetime.datetime.now()
     ## TIMER STOPPED AND RETURN DURATION
-    delta = stop-start  
+    duration = stop-start  
     ### Calculating Summarization PERCENTAGE
     reduction = '{:.1%}'.format(len(full_summary)/len(text))
-    print(f"Completed in {delta}")
+    print(f"Completed in {duration}")
     print(f"Reduction percentage: ", reduction)
     
-    return full_summary, delta, reduction
+    return full_summary, duration, reduction
 
 def main():
     # read a large-ish text file
