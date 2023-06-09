@@ -1,0 +1,60 @@
+2017-05-09
+“The Challenges of Reproducibility In Data Scarce Fields”
+Christine Borgman, Peter Darch
+
+Chris Borgman
+Range of data-sharing policies
+ - most policies focus on sharing over re-use
+
+Why share (current rationales)
+ - reproduce research
+ - make public assets available to all
+ - leverage research investment
+ - advance research & innovation
+
+Why reuse research data?
+ - reproduce research
+ - replicate
+ - verify or validate
+ - integrate with other data
+
+Documenting data for temperature
+
+Data are representations of observations, objects, or other entities
+used as evidience of pehon for the purposes of research or scholarchip
+
+if data sharing is the answer, what is the question?
+ - new models of scientific practice
+Qualitative methods: document analysis, ethnography, interviews
+
+[[ no guarantee of sci paradigm change ]]
+
+Peter Darch
+Reproducibility in the deep subseafloor biosphere
+
+Reproducing an analysis requires access to
+- data
+- methods
+- source code
+[[ source code req'd or is the same binary program, procedure, or app enough? ]]
+- workflows
+Access means
+- availability
+- usability
+- interpretability
+
+- transition from discovery-driven to hypothesis-driven science
+
+reproducibility objective is not the same as reuse objective
+
+a new domain requires personal ties to become established
+- reproducibility goals may inhibit sci progress in data-scare domains
+- focus on repro may obscure data reuse opportunities
+
+====
+Infrastructure investments req'd. [[ where will the resources come from? ]]
+
+Scarcity vs. abundance influences sharing behavior and moratoria.
+
+Quality and trust: not in the data, but in the people and institutions
+
