@@ -25,8 +25,8 @@ def AI_SummaryPL(checkpoint, text, chunks, overlap):
     example:  checkpoint = "./model/"  #it is actually LaMini-Flan-T5-248M 
     text: a long string; or an input long string; or a document read into a string
     chunks: integer, length of the split chunks
-    overlap: integer, overlap for attention and focus retreival
-    RETURNS full_summary (str), delta(str) and reduction(str)
+    overlap: integer, overlap for attention and focus retrieval
+    RETURNS full_summary (str), duration(str), and reduction(str)
 
     ? post_summary14 = AI_SummaryPL(LaMini,doc2,3700,500)
     USAGE EXAMPLE:
