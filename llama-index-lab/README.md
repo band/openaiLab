@@ -39,7 +39,7 @@ Set the OPENAI_API_KEY environment variable to your OpenAI API key:
 export OPENAI_API_KEY="your_openai_api_key_here"
 ```
 
-You can copy `env.sh-template` to `env.sh`, add your API key to it, and then use `source env.sh` to add your API key to the environment.
+You can copy `../env.sh-template` to `env.sh`, add your API key to it, and then use `source env.sh` to add your API key to the environment.
 
 Run the program
 
