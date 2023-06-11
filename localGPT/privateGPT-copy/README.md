@@ -1,4 +1,7 @@
-# original source: <https://github.com/imartinez/privateGPT>
+# original source: <https://github.com/imartinez/privateGPT>  
+
+2023-06-11:  
+ - code in this directory was forked from privateGPT repository, but was then modified and edited to suit my own experiments
 
 # privateGPT
 Ask questions to your documents without an internet connection, using the power of LLMs. 100% private, no data leaves your execution environment at any point. You can ingest documents and ask questions without an internet connection!
