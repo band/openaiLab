@@ -3,16 +3,16 @@
 - A repository to hold explorations and experiments with using OpenAI
   with the llama-index PyPi libraries
 
-- We try to keep the lab bench clean, but there is always the chance that unfinished work is left lying around.  Also, there is no guarantee that
-  what is here today will be here tomorrow.
+- A good practice is to activate the `venv` environment and `pip
+  install -U llama-index` frequently (at least every day)
+
+- We try to keep the lab bench clean, but there is always the chance that unfinished work is left lying around.  Also, there is no guarantee that what is here today will be here tomorrow.
 
 -----
 
 # obsidianChat.py - 
 
 obsidianChat.py is a command-line Python script that uses OpenAI to index the contents of an Obsidian vault, and reads queries on that index from the command line.
-
-Comments and bug reports are welcome at <https://github.com/band/openaiLab/issues>, and I'm happy to review pull requests.
 
 Note, there may be some breaking design or input/output method changes in future versions to support more indexing model options and run time efficiencies.
 
