@@ -45,7 +45,9 @@ $ source venv/bin/activate`
   installation may require that the HUGGINGFACE_API_TOKEN be
   available.  
   - if successful an http server will be running on `localhost:7860`  
-  - questions and requests can be entered on the web page  
+  - questions and requests can be entered on the web page; Prompt and
+    Response will be shown on the web page and displayed in the
+    Terminal  
   - the server can be terminated with the "Close Chatbot" button on
     the web page.  
 
