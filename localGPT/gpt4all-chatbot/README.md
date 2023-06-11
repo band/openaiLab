@@ -20,3 +20,32 @@
 2023-06-11:  
 - added a way to terminate (without grace) the gradio interface
 
+--------
+## Notes on running this program:  
+
+- install a Python virtual environment:  
+`$ python3 -m venv venv`  
+
+- activate that environment and update the pip module:  
+```
+$ source venv/bin/activate`  
+(venv) $ pip install --upgrade pip  
+```  
+
+- install the PyPi modules (these bring many modules with them):  
+```
+(venv) $ pip install gpt4all  
+(venv) $ pip install gradio  
+```  
+
+- to run the program:  
+`(venv) $ python gradioChat.py`  
+
+  - this will install the specified model if needed, and this
+  installation may require that the HUGGINGFACE_API_TOKEN be
+  available.  
+  - if successful an http server will be running on `localhost:7860`  
+  - questions and requests can be entered on the web page  
+  - the server can be terminated with the "Close Chatbot" button on
+    the web page.  
+
