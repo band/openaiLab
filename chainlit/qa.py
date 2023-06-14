@@ -8,11 +8,12 @@ from langchain.prompts.chat import (
     SystemMessagePromptTemplate,
     HumanMessagePromptTemplate,
 )
-import os
+
 import chainlit as cl
 
-
-os.environ["OPENAI_API_KEY"] = "OPENAI_API_KEY"
+# set environment variables
+import dotenv
+dotenv.load_dotenv()
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
 
