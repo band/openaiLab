@@ -34,3 +34,5 @@ db/
 # Jupyter Notebook
 .ipynb_checkpoints
 
+# 2023-06 experiments
+*.txt
