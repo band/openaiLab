@@ -21,14 +21,13 @@ def open_file(filepath):
 ######################################################################
 def AI_SummaryPL(checkpoint, text, chunks, overlap):
     """
-    checkpoint is in the format of relative path
-    example:  checkpoint = "./model/"  #it is actually LaMini-Flan-T5-248M 
+    checkpoint (like a snapshot) is in the format of relative path to a model file
+    example:  checkpoint = "./model/"
     text: a long string; or an input long string; or a document read into a string
     chunks: integer, length of the split chunks
     overlap: integer, overlap for attention and focus retrieval
-    RETURNS full_summary (str), duration(str), and reduction(str)
+    RETURNS full_summary (str), duration(str), and reduction percentage(str)
 
-    ? post_summary14 = AI_SummaryPL(LaMini,doc2,3700,500)
     USAGE EXAMPLE:
     post_summary, post_time, post_percentage = AI_SummaryPL(LaMini,originalText,3700,500)
     """
