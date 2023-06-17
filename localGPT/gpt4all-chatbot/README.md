@@ -20,6 +20,14 @@
 2023-06-11:  
 - added a way to terminate (without grace) the gradio interface
 
+2023-06-17:
+- observations about performance in terms of reliability and
+  reproducability
+  - reliability: responses constructed to questions may be wrong, even
+    when information is attributed to an outside institution
+  - reproducibilty: the same query yields the same answer (small test
+    sample size)
+
 --------
 ## Notes on running this program:  
 
