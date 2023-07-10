@@ -27,7 +27,7 @@ def save_file(content, filepath):
     with open(filepath, 'w', encoding='utf-8') as outfile:
         outfile.write(content)
         
-def gpt3_completion(prompt, engine='text-ada-001', temp=0.6, top_p=1.0, tokens=1800, freq_pen=0.25, pres_pen=0.0, stop=['<<END>>']):
+def gpt3_completion(prompt, engine='text-davinci-002', temp=0.6, top_p=1.0, tokens=1800, freq_pen=0.25, pres_pen=0.0, stop=['<<END>>']):
     max_retry = 5
     retry = 0
     while True:
@@ -61,7 +61,7 @@ if __name__ == '__main__':
     count = 0
     for chunk in chunks:
         count = count + 1
-        prompt = open_file('prompt.txt').replace('<<SUMMARY>>', chunk)
+        prompt = open_file('prompt.txt').replace('<<CHUNK>>', chunk)
         prompt = prompt.encode(encoding='ASCII',errors='ignore').decode()
         summary = gpt3_completion(prompt)
         print('\n\n\n', count, 'of', len(chunks), ' - ', summary)
